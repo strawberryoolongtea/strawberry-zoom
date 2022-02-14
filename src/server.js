@@ -24,7 +24,7 @@ wss.on("connection", (socket) => {
   console.log("Connected to Browser ✅");
   socket.on("close", () => console.log("Disconnected from Browser 🚫"));
   socket.on("message", (message) =>
-    console.log(Buffer.from(message, "base64").toString("utf-8"))
+    socket.send(Buffer.from(message, "base64").toString("utf-8"))
   );
   socket.send("Hello from server 🍓🍓🍓");
 });
