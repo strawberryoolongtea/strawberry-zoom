@@ -24,14 +24,19 @@ const sockets = [];
 
 wss.on("connection", (socket) => {
   sockets.push(socket);
+  socket["name"] = "Anonymous";
   console.log("Connected to Browser ✅");
   socket.on("close", () => console.log("Disconnected from Browser 🚫"));
-  socket.on("message", (message) =>
-    // socket.send(Buffer.from(message, "base64").toString("utf-8"))
-    // socket.send(message.toString())
-    sockets.forEach((aSocket) => aSocket.send(message.toString()))
-  );
-  // socket.send("Hello from server 🍓🍓🍓");
+  socket.on("message", (msg) => {
+    const message = JSON.parse(msg.toString());
+    if (message.type === "message") {
+      sockets.forEach((aSocket) =>
+        aSocket.send(`${socket.name}: ${message.payload}`)
+      );
+    } else if (message.type === "name") {
+      socket["name"] = message.payload;
+    }
+  });
 });
 
 server.listen(port, handleListen);

@@ -12,7 +12,10 @@ html
     main
       h2 Welcome to Strawberry Zoom
       ul
-      form
+      form#name
+        input(type="text", placeholder="Enter your name")
+        button Save
+      form#chat
         input(type="text", placeholder="Write a message", required)
         button Send
     script(src="/public/js/app.js")
