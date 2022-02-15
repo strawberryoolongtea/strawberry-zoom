@@ -20,13 +20,18 @@ app.get("/*", (req, res) => res.redirect("/"));
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
+const sockets = [];
+
 wss.on("connection", (socket) => {
+  sockets.push(socket);
   console.log("Connected to Browser ✅");
   socket.on("close", () => console.log("Disconnected from Browser 🚫"));
   socket.on("message", (message) =>
-    socket.send(Buffer.from(message, "base64").toString("utf-8"))
+    // socket.send(Buffer.from(message, "base64").toString("utf-8"))
+    // socket.send(message.toString())
+    sockets.forEach((aSocket) => aSocket.send(message.toString()))
   );
-  socket.send("Hello from server 🍓🍓🍓");
+  // socket.send("Hello from server 🍓🍓🍓");
 });
 
 server.listen(port, handleListen);
