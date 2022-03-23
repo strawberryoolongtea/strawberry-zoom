@@ -8,14 +8,21 @@ html
     link(rel="stylesheet", href="https://unpkg.com/mvp.css")
   body
     header
-      h1 It works!
+      h1 🍓 Strawberry Zoom 🍓
     main
-      h2 Welcome to Strawberry Zoom
-      ul
-      form#name
-        input(type="text", placeholder="Enter your name")
-        button Save
-      form#chat
-        input(type="text", placeholder="Write a message", required)
-        button Send
+      div#welcome
+        form
+          input(placeholder="Room name", required, type="text")
+          button Enter room
+      div#room
+        h3
+        ul
+        form#name
+          input(placeholder="name", required, type="text")
+          button Save
+        form#message
+          input(placeholder="message", required, type="text")
+          button Send
+    script(src="/socket.io/socket.io.js")
     script(src="/public/js/app.js")
+    script(src="/public/js/background.js")

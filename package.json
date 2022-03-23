@@ -1,5 +1,5 @@
 {
-  "name": "debate-ducks",
+  "name": "strawberry-zoom",
   "version": "1.0.0",
   "description": "Zoom Clone using NodeJS, WebRTC and Websockets from nico's class",
   "author": "Strawberry Oolong Tea",
@@ -17,6 +17,7 @@
   "dependencies": {
     "express": "^4.17.2",
     "pug": "^3.0.2",
+    "socket.io": "^4.4.1",
     "ws": "^8.5.0"
   }
 }
